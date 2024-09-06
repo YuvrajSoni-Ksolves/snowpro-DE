@@ -107,7 +107,7 @@ def ingest_us_sales(session)->None:
     METADATA$FILE_LAST_MODIFIED AS stg_last_modified\
     FROM\
     @my_internal_stg/source=US/format=parquet/date=2020-01-02/\
-                                                   order-20200102.snappy.parquet\
+                                                 order-20200102.snappy.parquet\
                                                                   (file_format => sales_dwh.common.my_parquet_format)\
     )\
     ON_ERROR = CONTINUE;\

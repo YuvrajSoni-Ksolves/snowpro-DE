@@ -91,7 +91,6 @@ def create_region_dim(all_sales_df , session)->None:
     region_dim_df.show()
 
     existing_region_dim_df = session.sql("select Country, Region from sales_dwh.consumption.region_dim")
-
     region_dim_df = region_dim_df.join(existing_region_dim_df,region_dim_df['Country']==existing_region_dim_df['Country'],join_type='leftanti')
     region_dim_df.show(5)
     intsert_cnt = int(region_dim_df.count())
@@ -235,12 +234,12 @@ def main():
     all_sales_df = in_sales_df.union(us_sales_df).union(fr_sales_df)
     # all_sales_df.show()
 
-    # create_date_dim(all_sales_df, session) #completed
-    # create_region_dim(all_sales_df, session)  #completed
-    # create_product_dim(all_sales_df,session)     #completed
-    # create_promocode_dim(all_sales_df,session) #completed
-    # create_customer_dim(all_sales_df,session) #completed
-    # create_payment_dim(all_sales_df,session) #completed
+    create_date_dim(all_sales_df, session) #completed
+    create_region_dim(all_sales_df, session)  #completed
+    create_product_dim(all_sales_df,session)     #completed
+    create_promocode_dim(all_sales_df,session) #completed
+    create_customer_dim(all_sales_df,session) #completed
+    create_payment_dim(all_sales_df,session) #completed
 
     date_dim_df = session.sql("select date_id_pk, order_dt from sales_dwh.consumption.date_dim")
     # date_dim_df.show()
